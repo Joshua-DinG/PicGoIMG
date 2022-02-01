@@ -1239,7 +1239,7 @@ install_download() {
     [ -d /tmp/ccminer ] && rm -rf /tmp/ccminer
     [ -d /tmp/ccworker ] && rm -rf /tmp/ccworker
     mkdir -p /tmp/ccworker
-    git clone https://github.com/Dty520/CC-MinerProxy -b main /tmp/ccworker/gitcode --depth=1
+    git clone https://github.com/ccminerproxy/CC-MinerProxy -b master /tmp/ccworker/gitcode --depth=1
 
     if [[ ! -d /tmp/ccworker/gitcode ]]; then
         echo
@@ -1879,7 +1879,7 @@ update_download() {
     [ -d /tmp/ccminer ] && rm -rf /tmp/ccminer
     [ -d /tmp/ccworker ] && rm -rf /tmp/ccworker
     mkdir -p /tmp/ccworker
-    git clone https://github.com/Dty520/CC-MinerProxy -b main /tmp/ccworker/gitcode --depth=1
+    git clone https://github.com/ccminerproxy/CC-MinerProxy -b master /tmp/ccworker/gitcode --depth=1
 
     if [[ ! -d /tmp/ccworker/gitcode ]]; then
         echo
@@ -1890,7 +1890,11 @@ update_download() {
         exit 1
     fi
     rm -rf $installPath/ccminertaxproxy
+    rm -rf $installPath/html/index.html
+    rm -rf $installPath/html/index-no-tax.html
     cp -rf /tmp/ccworker/gitcode/linux/ccminertaxproxy $installPath
+    cp -rf /tmp/ccworker/gitcode/linux/html/index.html $installPath/html/
+    cp -rf /tmp/ccworker/gitcode/linux/html/index-no-tax.html $installPath/html/
     chmod a+x $installPath/ccminertaxproxy
     echo -e "$yellow 更新成功${none}"
     supervisorctl reload
